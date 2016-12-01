@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block content %}
+<main class="content col-lg-8">
+<article class="post page">
+  <header class="post-header">
+    <h1 class="post-title">Mes projets photographiques</h1>
+  </header>
+  <section class="post-content">
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active">
+    <a class="sub-title" href="#p52_2016" role="tab"
+       style="margin: 0;"
+       data-toggle="tab">Projet 52 - 2016</a>
+  </li>
+  <li>
+    <a class="sub-title" href="#p52_2015" role="tab"
+       style="margin: 0;"
+       data-toggle="tab">Projet 52 - 2015</a>
+  </li>
+  <li>
+    <a class="sub-title" href="#charlie_month" role="tab"
+       style="margin: 0;"
+       data-toggle="tab">Charlie au fil des mois</a>
+  </li>
+  <li>
+    <a class="sub-title" href="#gaspard_month" role="tab"
+       style="margin: 0;"
+       data-toggle="tab">Gaspard au fil des mois</a>
+  </li>
+</ul>
+<div class="tab-content" style="margin-top: 20px;">
+  <div class="tab-pane active" id="p52_2016">
+<p>
+Voici donc notre galerie de portraits de famille ! Cette année a été particulière pour nous car notre famille s'est agrandie.
+Nous nous sommes donc amusé à nous photographier tous ensemble une fois par semaine pour <strong>le projet 52 - 2016</strong>.
+On trouve rigolo de voir s'agrandir et évoluer notre famille au fil des semaines.
+Nous comptons imprimer un livre à emporter avec nous en voyage et qui clôturera joliement cette série 2016.
+N'hésitez pas à cliquer sur les photographies pour les agrandir.</p>
+<h2 class="sub-title">Un portrait de famille, chaque semaine, en 2016</h2>
+    <div class="row">
+    {% for elt in p52_2016 %}
+      {% if loop.index0 % 3 == 0 %}
+        </div>
+        <div class="row">
+      {% endif %}
+      <div class="col-lg-4 col-xs-12 row-images">
+        <img src="{{elt[1]}}" alt="{{elt[0]}}"
+             title="{{elt[0]}}" style="width:100%" />
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="tab-pane" id="p52_2015">
+<p>Charlie n'a pas encore un an quand je commence cette série qui rend compte d'instants anodins de notre quotidien.
+Elle change si vite ! Je veux capturer les indices de cette évolution rapide, c'est pourquoi je choisis
+d'immortaliser un de ces instants chaque semaine pour <strong>le projet 52 - 2015</strong>.
+Et puis je dois bien avouer que je la trouve très photogénique cette petite magicienne du bonheur...
+c'est un régale de la photographier ! Depuis, nous feuilletons régulièrement le chouette livre tiré de ce projet.</p>
+<h2 class="sub-title">Un portrait de Charlie, chaque semaine, en 2015</h2>
+    <div class="row">
+    {% for elt in p52_2015 %}
+      {% if loop.index0 % 3 == 0 %}
+        </div>
+        <div class="row">
+      {% endif %}
+      <div class="col-lg-4 col-xs-12 row-images">
+        <img src="{{elt[1]}}" alt="{{elt[0]}}"
+             title="{{elt[0]}}" style="width:100%" />
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="tab-pane" id="charlie_month">
+<p>À la naissance de ma fille, Charlie, je décide de la photographier chaque mois pendant un an à sa date anniversaire.
+Toujours sur le même tapis -qui est son espace de jeu dans le salon- afin de l'observer grandir.
+Le résultat est un tableau de douze photographies témoignant de sa première année de vie.
+Tout simplement ma <strong>Charlie au fil des mois</strong>.</p>
+<h2 class="sub-title">Charlie au fil des mois, année 2014 / 2015</h2>
+    <div class="row">
+    {% for elt in charlie_month %}
+      {% if loop.index0 % 3 == 0 %}
+        </div>
+        <div class="row">
+      {% endif %}
+      <div class="col-lg-4 col-xs-12 row-images">
+        <img src="{{elt[1]}}" alt="{{elt[0]}}"
+             title="{{elt[0]}}" style="width:100%" />
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="tab-pane" id="gaspard_month">
+<p>Comme pour sa sœur, je souhaite conserver un témoignage succinct de la première année de vie de mon fils, Gaspard.
+Je décide donc de le photographier chaque mois sur la couverture aux cent vœux de Charlie qui a une très forte
+signification pour nous et qu'on utilise très souvent comme espace de jeu. Une année résumée en douze clichés
+sélectionnés parmis tous les autres. Le regard amoureux d'une maman sur son tout petit.
+Tout simplement mon <strong>Gaspard au fil des mois</strong>.</p>
+<h2 class="sub-title">Gaspard au fil des mois, année 2016 / 2017</h2>
+    <div class="row">
+    {% for elt in gaspard_month %}
+      {% if loop.index0 % 3 == 0 %}
+        </div>
+        <div class="row">
+      {% endif %}
+      <div class="col-lg-4 col-xs-12 row-images">
+        <img src="{{elt[1]}}" alt="{{elt[0]}}"
+             title="{{elt[0]}}" style="width:100%" />
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+  </section>
+</article>
+</main>
+{% endblock %}

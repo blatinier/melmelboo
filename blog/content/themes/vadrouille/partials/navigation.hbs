@@ -1,0 +1,76 @@
+<button type="button" data-toggle="collapse"
+        data-target="#site-menu" id="menu-drop">
+  <img src="/images/icon-menu.svg" alt="menu" />
+</button>
+<div class="col-lg-3 collapse" id="site-menu">
+<nav class="col-lg-3 sidebar navbar-fixed-top nav-menu">
+  <div class="container-fluid">
+  <img id="logo" src="{{asset "images/header.jpg" }}"
+       alt="melmelboo"
+       onclick="javascript:window.location='/'" />
+  <ul class="nav nav-sidebar nav-stacked" id="main-menu">
+    <li class="visible-md-block visible-lg-block"><br /></li>
+    <li role="presentation">
+        <a {{#is "post"}}class="current"{{/is}} title="Le blog" href="/blog/">Blog</a>
+    </li>
+    <li class="visible-md-block visible-lg-block"><br /></li>
+    <li role="presentation">
+      <a title="Moi !" href="/blog/qui-suis-je/">Qui suis-je ?</a>
+    </li>
+    <li role="presentation">
+      <a title="En image !" href="/projects">Projet photo</a>
+    </li>
+    <li role="presentation">
+        <a title="Tour du monde" href="https://www.melmelboo.fr/blog/tour-du-monde">Tour du monde</a>
+    </li>
+    <li role="presentation">
+        <a title="Contactez moi !" href="/contact-me">Me Contacter</a>
+    </li>
+    <!--<li class="visible-md-block visible-lg-block"><br /></li>
+    <li role="presentation">
+        <form>
+            <input id="search-field" />
+        </form>
+        <section id="results"></section>
+    </li>-->
+  </ul>
+  <ul class="social">
+    <li>
+      <a title="Instagram" href="http://instagram.com/melmelbooo">
+        <img class="social_icon"
+             src="{{asset "/images/social/instagram.png" }}"
+             alt="Instagram" />
+      </a>
+    </li>
+    <li>
+      <a title="Facebook" href="http://www.facebook.com/melmelboo">
+        <img class="social_icon"
+             src="{{asset "/images/social/facebook.png" }}"
+             alt="Facebook" />
+      </a>
+    </li>
+    <li>
+      <a title="Hellocoton" href="http://www.hellocoton.fr/mapage/melmelboo">
+        <img class="social_icon"
+             src="{{asset "/images/social/hellocoton.png" }}"
+             alt="Hellocoton" />
+      </a>
+    </li>
+    <li>
+      <a title="Pinterest" href="http://www.pinterest.com/melmelboo">
+        <img class="social_icon"
+             src="{{asset "/images/social/pinterest.png" }}"
+             alt="Pinterest" />
+      </a>
+    </li>
+    <li>
+      <a title="Flux RSS" href="/blog/rss">
+        <img class="social_icon"
+             src="{{asset "/images/social/feed.png" }}"
+             alt="RSS" />
+      </a>
+    </li>
+  </ul>
+  </div>
+</nav>
+</div>

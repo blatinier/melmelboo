@@ -1,0 +1,13 @@
+*.pyc
+conf.py
+__pycache__
+venv
+blog/LICENSE
+blog/*.js
+blog/*.json
+blog/*.md
+blog/core/
+blog/node_modules/
+blog/content/apps/
+blog/content/data/
+blog/content/images/

@@ -1,0 +1,16 @@
+import logging
+#PLATFORM_URL = 'https://www.melmelboo.fr'
+PLATFORM_URL = 'https://blog.melmelboo.fr'
+SECRET_KEY = 'test'
+
+# LOG
+LOG_LEVEL = logging.INFO
+LOG_TYPE = ''
+LOG_PATH = ''
+
+MAIL_SENDER_ADDR = 'my@email.com'
+MAIL_SENDER_MDP = 'test'
+
+BLOG_DB_PATH = "/path/to/melmelboo/blog/ghost.db"
+GHOST_ID = "ghost-api-id"
+GHOST_SECRET = "ghost-api-secret"

@@ -1,0 +1,11 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+{{!-- The tag below includes the right menu - partials/navigation.hbs --}}
+{{> "navigation"}}
+<main id="content" class="content col-lg-9" role="main">
+    <div class="posts-loop">
+      {{!-- The tag below includes the post loop - partials/loop.hbs --}}
+      {{> "loop"}}
+    </div>
+</main>

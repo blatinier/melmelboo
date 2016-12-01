@@ -1,0 +1,404 @@
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%
+}
+body { margin: 0; }
+article, aside, details,
+footer, header,
+main, menu, nav,
+section, summary { display:block; }
+a { background-color: transparent;}
+a:active, a:hover { outline: 0; }
+b, strong { font-weight: bold; }
+h1 { font-size: 2em; margin: 0.67em 0; }
+img { border: 0; }
+hr { box-sizing: content-box; height: 0; }
+/* ==========================================================================
+   2. General - Setting up some base styles
+   ========================================================================== */
+html {
+  height: 100%;
+  max-height: 100%;
+  font-size: 62.5%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  height: 100%;
+  max-height: 100%;
+  font-family: "Merriweather", serif;
+  font-size: 1.8rem;
+  line-height: 1.75em;
+  color: #4A4A4A;
+  -webkit-font-feature-settings: 'kern' 1;
+  -moz-font-feature-settings: 'kern' 1;
+  -o-font-feature-settings: 'kern' 1;
+  text-rendering: geometricPrecision;
+}
+::-moz-selection {
+  background: #D6EDFF;
+}
+::selection {
+  background: #D6EDFF;
+}
+h1, h2, h3,
+h4, h5, h6 {
+  -webkit-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+  -moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+  -o-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+  color: #2E2E2E;
+  line-height: 1.15em;
+  margin: 0 0 0.4em 0;
+  font-family: "Open Sans", sans-serif;
+  text-rendering: geometricPrecision;
+}
+h1 {
+  font-size: 5rem;
+  letter-spacing: -2px;
+  text-indent: -3px;
+}
+h2 {
+  font-size: 3.6rem;
+}
+h3 {
+  font-size: 3rem;
+  letter-spacing: -0.6px;
+}
+h4 {
+  font-size: 2.5rem;
+}
+h5 {
+  font-size: 2rem;
+}
+h6 {
+  font-size: 2rem;
+}
+a {
+  color: #4A4A4A;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #111;
+}
+p, ul {
+  -webkit-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
+  -moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
+  -o-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
+  margin: 0 0 1.75em 0;
+  text-rendering: geometricPrecision;
+}
+ul {
+  padding-left: 3rem;
+}
+li {
+  margin: 0.4em 0;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: #EFEFEF 1px solid;
+  margin: 3.2em 0;
+  padding: 0;
+}
+#content-home h1 {
+  font-family: "Open Sans Condensed","Helvetic",sans-serif;
+  font-size: 1.6em;
+  letter-spacing: 5px;
+  margin: 0;
+  padding: 15px 0;
+  text-transform: uppercase;
+}
+#content-home h2 {
+  text-transform: none;
+}
+article.post {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+}
+.post {
+  border-bottom: none;
+  padding-bottom: 0;
+  position: relative;
+  margin: 4rem auto;
+  word-wrap: break-word;
+}
+article {
+  display: block;
+}
+.post-content {
+  font-family: "Open Sans",sans-serif;
+  font-size: 0.73em;
+  font-style: normal;
+  line-height: 1.7em;
+  min-height: 75px;
+  text-align: justify;
+}
+a.sub-title {
+  color: #aaa;
+  text-decoration: none;
+  text-transform: none;
+}
+.sub-title {
+  border-bottom: 1px solid #CCC;
+  font-family: "Open Sans Condensed",sans-serif;
+  font-size: 2em;
+  margin-bottom: 1.20em;
+  width: 100%;
+}
+.row-images {
+  padding: 0 5px 5px 0;
+}
+.post-content img {
+  border-radius: 10px;
+}
+.post-template .page .post-title {
+  padding-left: 0;
+}
+.post-template .post-title {
+  margin-bottom: 50px;
+  padding-left: 85px;
+  padding-top: 20px;
+}
+header h1.post-title, header h2.post-title {
+  font-family: "Open Sans Condensed",sans-serif;
+  font-size: 1.42em;
+  font-weight: 100;
+  letter-spacing: -0.6px;
+  text-transform: uppercase;
+  width: 95%;
+}
+/* Clears shit */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+/* Wraps the main content & footer */
+.site-wrapper {
+  position: relative;
+  z-index: 10;
+  min-height: 100%;
+  background: #fff;
+  -webkit-transition: -webkit-transform 0.5s ease;
+      transition: transform 0.5s ease;
+}
+/* ==========================================================================
+   4. General - The main styles for the the theme
+   ========================================================================== */
+nav.nav-menu {
+  z-index:0;
+}
+.nav {
+  font-family: "Open Sans Condensed","Helvetic",sans-serif;
+  text-transform: uppercase;
+}
+.nav > li > a {
+    padding: 0 15px;
+}
+#search-field {
+  background-image:url('/assets/images/search.svg');
+  background-repeat:no-repeat;
+  background-position:right center;
+  outline:0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin: 0;
+  padding: 6px 0 6px 10px;
+  width: 95%;
+}
+#results {
+  border-bottom: 1px solid #bbc7cc;
+  border-left: 1px solid #bbc7cc;
+  border-right: 1px solid #bbc7cc;
+  border-top: medium none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+#results .search-result {
+  height: 2em;
+  padding-left: 9px;
+  width: 96%;
+}
+#results .search-result:hover {
+  background: #b4d6f3 none repeat scroll 0 0;
+}
+ul.social {
+  position: fixed;
+  bottom: 0;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+ul.social li {
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 5px;
+}
+ul.social img {
+  height:23px;
+  width:23px;
+}
+main.content {
+  margin-top: 95px;
+  padding-left: 40px;
+  padding-right: 0;
+}
+.post-header {margin-bottom: 4rem;}
+#content-home {
+  text-align: center;
+}
+/* Every post, on every page, gets this style on its <article> tag */
+main {
+  padding: 0 135px;
+}
+#globe {
+  float:right;
+  height:168px;
+  margin-top:-170px;
+}
+#menu-drop {
+  display: none;
+}
+#logo {
+  width: 130%;
+}
+/* ==========================================================================
+   12. Media Queries - Smaller than 900px
+   ========================================================================== */
+@media only screen and (max-width: 900px) {
+  hr {
+    margin: 2.4em 0;
+  }
+  ul {
+    padding-left: 2em;
+  }
+  h1 {
+    font-size: 4.5rem;
+    text-indent: -2px;
+  }
+  h2 {
+    font-size: 3.6rem;
+  }
+  h3 {
+    font-size: 3.1rem;
+  }
+  h4 {
+    font-size: 2.5rem;
+  }
+  h5 {
+    font-size: 2.2rem;
+  }
+  h6 {
+    font-size: 1.8rem;
+  }
+}
+/* ==========================================================================
+   12. Media Queries - Smaller than 991px
+   ========================================================================== */
+
+@media only screen and (min-width: 991px) {
+  #site-menu {
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 991px) {
+  ul.social{
+    position: relative;
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+  #logo {
+    width: 100%;
+  }
+  #site-menu {
+    padding: 0;
+  }
+  li {
+    margin: 0;
+  }
+  #menu-drop {
+    background-color: transparent;
+    border-radius: 10px;
+    display: block;
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    z-index: 100;
+  }
+  .navbar-fixed-top {
+    position: relative;
+  }
+  article.post {
+    margin-top: 15px;
+  }
+  .collapse {
+    display: none;
+  }
+  #globe {
+    display: none;
+  }
+  main.content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+/* ==========================================================================
+   12. Media Queries - Smaller than 500px
+   ========================================================================== */
+@media only screen and (max-width: 500px) {
+  hr {
+    margin: 1.75em 0;
+  }
+  p, ul {
+    font-size: 0.95em;
+    margin: 0 0 2.5rem 0;
+  }
+  h1, h2, h3,
+  h4, h5, h6 {
+    margin: 0 0 0.3em 0;
+  }
+  h1 {
+    font-size: 2.8rem;
+    letter-spacing: -1px;
+  }
+  h2 {
+    font-size: 2.4rem;
+    letter-spacing: 0;
+  }
+  h3 {
+    font-size: 2.1rem;
+  }
+  h4 {
+    font-size: 1.9rem;
+  }
+  h5 {
+    font-size: 1.8rem;
+  }
+  h6 {
+    font-size: 1.8rem;
+  }
+}
+input {
+  width: 260px;
+  padding: 6px 9px;
+  margin: 0 0 5px 0;
+  outline: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 100;
+  line-height: 1.4em;
+  background: #fff;
+  border: #e7eef2 1px solid;
+  border-radius: 4px;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+.current {
+  background-color: #eee;
+}
