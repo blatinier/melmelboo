@@ -450,6 +450,28 @@ a.sub-title {
   background: #b4d6f3 none repeat scroll 0 0;
 }
 
+.post-loop-header {
+  overflow: hidden;
+  max-height: 182px;
+}
+.overlay-voyage {
+  position: relative;
+  width: 92%;
+}
+.overlay-voyage > div.overlay {
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+  bottom: 0;
+  color: white;
+  font-family: "Open Sans Condensed",sans-serif;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+.overlay-voyage > img {
+  width: 100%;
+}
+
 .posts-loop {
   float: left;
 }

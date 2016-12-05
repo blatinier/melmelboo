@@ -1,7 +1,7 @@
 {{!-- This is the post loop - each post will be output using this markup --}}
 {{#foreach posts}}
 <article class="{{post_class}} row">
-  <header class="col-lg-4">
+  <header class="col-lg-4 post-loop-header">
 {{#xif "_.findIndex(tags, function(o) { return o.slug == 'melmelboo-voyage'}) !== -1" }}
   {{#xif "_.startsWith(url, '/blog') && url.indexOf('/art-') === -1" }}
     <a href="//www.melmelboo-voyage.fr{{url}}">
@@ -12,10 +12,14 @@
       <a href="//www.melmelboo-voyage.fr{{#x "_.replace(url, /(\/blog)?\/art-(.*)-\d+\//, '/blog/$2')"}}{{/x}}">
     {{/xif}}
   {{/xif}}
+  <div class="overlay-voyage">
+    <img alt="{{title}}" src="{{image}}" />
+    <div class="overlay">www.melmelboo-voyage.fr</div>
+  </div>
 {{ else }}
     <a href="{{url}}">
-{{/xif}}
       <img style="width:92%;" alt="{{title}}" src="{{image}}" />
+{{/xif}}
     </a>
   </header>
   <section class="post-excerpt col-lg-8">
