@@ -117,6 +117,28 @@ article.post {
   margin-bottom: 0;
   width: 100%;
 }
+input#submit-search {
+  background: none;
+  border: none;
+  left: 5px;
+  position: absolute;
+  top: 5px;
+  width: 50px;
+}
+input#search {
+  color: #AAA;
+  display: inline-block;
+  font-style: italic;
+  margin-left: 15px;
+  margin-top: 10px;
+  padding-left: 35px;
+  width: 50%;
+}
+.page-search-post {
+  margin-right: 0;
+  padding-bottom: 4rem;
+}
+body .post-title {font-size: 1.8rem;font-weight: bold;}
 .post {
   border-bottom: none;
   padding-bottom: 0;
@@ -149,6 +171,43 @@ a.sub-title {
 }
 .row-images {
   padding: 0 5px 5px 0;
+}
+.post-loop-header {
+  overflow: hidden;
+  max-height: 182px;
+}
+.post-excerpt {
+  margin-left: -15px;
+  padding: 0;
+}
+
+.post-excerpt h2 {
+  font-family: "Open Sans Condensed",sans-serif;
+}
+
+.post-excerpt a {
+  text-decoration: none;
+}
+
+.post-excerpt p {
+  color: #4A4A4A;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  font-size: 0.73em;
+  font-style: normal;
+  line-height: 1.5em;
+  margin: 15px 0 0 0;
+  min-height: 60px;
+  text-align: justify;
+  width: 95%;
+}
+
+.post-excerpt p.read-more:hover {
+  color: #889093;
+}
+.post-excerpt p.read-more {
+  color: black;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  text-decoration: none;
 }
 .post-content img {
   border-radius: 10px;
@@ -199,17 +258,6 @@ nav.nav-menu {
 .nav > li > a {
     padding: 0 15px;
 }
-#search-field {
-  background-image:url('/assets/images/search.svg');
-  background-repeat:no-repeat;
-  background-position:right center;
-  outline:0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  margin: 0;
-  padding: 6px 0 6px 10px;
-  width: 95%;
-}
 #results {
   border-bottom: 1px solid #bbc7cc;
   border-left: 1px solid #bbc7cc;
@@ -217,14 +265,6 @@ nav.nav-menu {
   border-top: medium none;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-}
-#results .search-result {
-  height: 2em;
-  padding-left: 9px;
-  width: 96%;
-}
-#results .search-result:hover {
-  background: #b4d6f3 none repeat scroll 0 0;
 }
 ul.social {
   position: fixed;

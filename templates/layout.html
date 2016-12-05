@@ -94,6 +94,12 @@
             <a title="Contactez moi !" href="/contact-me">Me Contacter</a>
             {% endif %}
         </li>
+        <li role="presentation">
+          <input type="image" id="submit-search"
+                 src="/images/search.svg" alt="Search" />
+          <input type="text" id="search" placeholder="rechercher"
+          {%- if search %} value="{{search}}"{% endif %}/>
+        </li>
       </ul>
       <ul class="social">
         <li>
@@ -140,7 +146,8 @@
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script async type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/shadowbox.js"></script>
+<script type="text/javascript" src="/js/shadowbox.js"></script>
+<script type="text/javascript" src="/js/search.js"></script>
 <script type="text/javascript">
     Shadowbox.init();
     $(function(){

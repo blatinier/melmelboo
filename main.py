@@ -1,12 +1,20 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import sqlite3
-
 from flask import render_template, request, redirect
 from flask_mail import Message
+from whoosh.filedb.filestore import FileStorage
+from whoosh.qparser import MultifieldParser
 
+import conf
 from bootstrap import application, mail
 from forms import ContactForm
+from utils.cleaner import clean_string
+
+
+def excerpt(text):
+    text = clean_string(text)
+    return " ".join(text.split(" ")[:45])
 
 
 @application.route("/", methods=['GET'])
@@ -70,3 +78,28 @@ def projects():
     return render_template('projects.html', charlie_month=charlie_month,
                            p52_2015=p52_2015, p52_2016=p52_2016,
                            gaspard_month=gaspard_month)
+
+
+@application.route("/search/", defaults={'page': 1})
+@application.route("/search/<int:page>")
+def search(page):
+    search = request.args['q']
+    storage = FileStorage(conf.INDEX_DIR)
+    index = storage.open_index(indexname=conf.INDEX_NAME)
+    qp = MultifieldParser(['title', 'text', 'tags'], schema=index.schema)
+    q = qp.parse(search)
+    results = []
+    with index.searcher() as searcher:
+        results = searcher.search_page(q, page, pagelen=conf.PAGE_SIZE)
+        # Get real posts
+        post_ids = ",".join([p['post_id'] for p in results])
+        ghost = sqlite3.connect(conf.BLOG_DB_PATH)
+        ghost_cur = ghost.cursor()
+        ghost_cur.execute("SELECT title, image, html, slug "
+                          "FROM posts WHERE id IN (%s)" % post_ids)
+        posts = [{'type': "post",
+                  'title': i[0],
+                  'image': i[1],
+                  'excerpt': excerpt(i[2]),
+                  'url': "/blog/" + i[3]} for i in ghost_cur.fetchall()]
+    return render_template("search.html", posts=posts, search=search)
