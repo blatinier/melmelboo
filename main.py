@@ -75,6 +75,7 @@ def projects():
                       "AND strftime('%Y', published_at)='2016'"
                       "ORDER BY published_at DESC")
     p52_2016 = list(ghost_cur.fetchall())
+    ghost.close()
     return render_template('projects.html', charlie_month=charlie_month,
                            p52_2015=p52_2015, p52_2016=p52_2016,
                            gaspard_month=gaspard_month)
@@ -102,4 +103,5 @@ def search(page):
                   'image': i[1],
                   'excerpt': excerpt(i[2]),
                   'url': "/blog/" + i[3]} for i in ghost_cur.fetchall()]
+        ghost.close()
     return render_template("search.html", posts=posts, search=search)
