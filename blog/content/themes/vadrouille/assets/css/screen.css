@@ -440,6 +440,12 @@ input#search {
   width: 50%;
 }
 
+.post-voyage-call-to-action {
+  margin-bottom: 30px;
+  margin-top: -50px;
+  width: 90%;
+}
+
 .post-loop-header {
   overflow: hidden;
   max-height: 182px;
