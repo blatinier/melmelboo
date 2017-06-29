@@ -53,16 +53,6 @@ Website: %s
 def projects():
     ghost = sqlite3.connect("/var/www/melmelboo/blog/content/data/ghost.db")
     ghost_cur = ghost.cursor()
-    # Get charlie au fil des mois
-    ghost_cur.execute("SELECT title, image FROM posts WHERE id IN "
-                      "(SELECT post_id FROM posts_tags WHERE tag_id=38) "
-                      "ORDER BY published_at DESC")
-    charlie_month = list(ghost_cur.fetchall())
-    # Get gaspard au fil des mois
-    ghost_cur.execute("SELECT title, image FROM posts WHERE id IN "
-                      "(SELECT post_id FROM posts_tags WHERE tag_id=42) "
-                      "ORDER BY published_at DESC")
-    gaspard_month = list(ghost_cur.fetchall())
     # Get projet 52 - 2015
     ghost_cur.execute("SELECT title, image FROM posts WHERE id IN "
                       "(SELECT post_id FROM posts_tags WHERE tag_id=36) "
@@ -76,9 +66,8 @@ def projects():
                       "ORDER BY published_at DESC")
     p52_2016 = list(ghost_cur.fetchall())
     ghost.close()
-    return render_template('projects.html', charlie_month=charlie_month,
-                           p52_2015=p52_2015, p52_2016=p52_2016,
-                           gaspard_month=gaspard_month)
+    return render_template('projects.html',
+                           p52_2015=p52_2015, p52_2016=p52_2016)
 
 
 @application.route("/search/", defaults={'page': 1})
