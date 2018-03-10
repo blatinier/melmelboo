@@ -19,7 +19,7 @@ def excerpt(text):
 
 @application.route("/", methods=['GET'])
 def home():
-    return redirect("/blog")
+    return redirect(conf.BLOG_PATH)
 
 
 @application.route("/contact-me", methods=['GET', 'POST'])
