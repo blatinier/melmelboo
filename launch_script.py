@@ -13,3 +13,6 @@ if __name__ == "__main__":
                          conf.INDEX_DIR)
         bi.init_index()
         bi.index_blog()
+    elif args.script == "mails_to_mailchimp":
+        from scripts.mailchimp import transfer
+        transfer(conf.MAILCHIMP_API_KEY, conf.BLOG_VOYAGE_DB)

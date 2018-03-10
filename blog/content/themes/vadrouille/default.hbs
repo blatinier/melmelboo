@@ -28,14 +28,32 @@
     <link rel="stylesheet" type="text/css" href="{{asset "/css/shadowbox.css"}}" />
     {{!-- Ghost outputs important style and meta data with this tag --}}
     {{ghost_head}}
+    <meta name="twitter:site" content="@Melmelboo" />
+    <!-- Because twitter will fallback to the og data it will automatically pick up the
+         title image and description from the below facebook open graph tags.
+         Hence, we do not include them above to avoid duplication -->
+    <!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:site_name" content="Melmelboo" />
+    <meta property="og:url" content="{{@blog.url}}{{url}}" />
+    <meta property="og:title" content="{{meta_title}}" />
+    <meta property="og:description" content="{{meta_description}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    {{#is "post"}}
+      {{#post}}
+        <meta property="og:image" content="{{image absolute='true'}}" />
+      {{/post}}
+    {{else}}
+      <meta property="og:image" content="{{@blog.url}}{{@blog.logo}}" />
+    {{/is}}
 </head>
 <body class="{{body_class}} nav-closed">
  <noscript><p><img src="//stats.melmelboo.fr/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
  <!-- End Piwik Code -->
     <div class="site-wrapper container-fluid">
       <div class="row">
-          {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
-          {{{body}}}
+        {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+        {{{body}}}
       </div>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -48,12 +66,43 @@
             data-isso-css="false"
             src="//comments.melmelboo-voyage.fr/js/embed.dev.js"></script>
     <script type="text/javascript">
-        Shadowbox.init();
-        $(function(){
-            $(".post-content img").each(function(index){
-                $(this).wrap('<a href="'+$(this).attr("src")+'" title="'+$(this).attr("alt")+'" rel="shadowbox[Gallerie]" />');
-            });
+      Shadowbox.init();
+      $(function(){
+        function createCookie(name,value,days) {
+          var expires = "";
+          if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+          }
+          document.cookie = name + "=" + value + expires + "; path=/";
+        }
+        function readCookie(name) {
+          var nameEQ = name + "=";
+          var ca = document.cookie.split(';');
+          for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+          }
+          return null;
+        }
+        function eraseCookie(name) {
+          createCookie(name,"",-1);
+        }
+        $(".post-content img").each(function(index){
+          $(this).wrap('<a href="'+$(this).attr("src")+'" title="'+$(this).attr("alt")+'" rel="shadowbox[Gallerie]" />');
         });
+        if (readCookie('melmelboo-share-box') === "NOP") {
+          $("#share-tooltip").hide();
+        }
+        $("#no-share-box").click(function (e) {
+          console.log("No more tooltip box");
+          e.preventDefault();
+          $("#share-tooltip").hide();
+          createCookie('melmelboo-share-box', 'NOP', 30);
+        });
+      });
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/locale/fr.js"></script>
@@ -62,21 +111,20 @@
     $(document).ready(function () {
       moment.locale('de');
         $('.post-date').each(function (i, date) {
-            var $date = $(date);
-            $date.html(
-              moment($date.attr('datetime')).format('D [<br/>] MMMM [<br/>] YYYY')
-            );
+          var $date = $(date);
+          $date.html(
+            moment($date.attr('datetime')).format('D [<br/>] MMMM [<br/>] YYYY')
+          );
         });
     });
     // Current page menu highlight
     $('.nav a').each(function() {
-        if($(this).attr('href') == window.location.pathname ||
-           $(this).attr('href') == window.location.href) {
-            $(this).addClass('current');
-        }
+      if($(this).attr('href') == window.location.pathname ||
+         $(this).attr('href') == window.location.href) {
+          $(this).addClass('current');
+      }
     });
     </script>
-    {{!-- The main JavaScript file for Casper --}}
     <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
     <script type="text/javascript" src="/js/search.js"></script>
     {{!-- Ghost outputs important scripts and data with this tag --}}

@@ -7,9 +7,24 @@
 
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<div id="share-tooltip">
+  <p>Hey ! On a une chouette page facebook, tu viens ?</p>
+  <img id="share-gif" src="/images/cloud.gif" alt="" />
+  <div class="fb-like" data-href="https://www.facebook.com/melmelboo" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+  <p><a href="#nop" id="no-share-box">Non... laisse moi tranquille, va-t-en !</a></p>
+</div>
 <main class="content col-lg-8" role="main">
     <article class="{{post_class}}">
-
         <header class="post-header">
             <time class="post-date"
                   datetime="{{date format="YYYY-MM-DD"}}">
@@ -22,33 +37,6 @@
             {{content}}
             <p></p>
         </section>
-        {{!--
-        <footer class="post-footer">
-            <section class="share">
-                <h4>Share this post</h4>
-                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text={{encode title}}&amp;url={{url absolute="true"}}"
-                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <span class="hidden">Twitter</span>
-                </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
-                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <span class="hidden">Facebook</span>
-                </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url={{url absolute="true"}}"
-                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <span class="hidden">Google+</span>
-                </a>
-            </section>
-
-            {{#if @labs.subscribers}}
-            <section class="gh-subscribe">
-                <h3 class="gh-subscribe-title">Subscribe to {{@blog.title}}</h3>
-                <p>Get the latest posts delivered right to your inbox.</p>
-                {{subscribe_form placeholder="Your email address"}}
-                <span class="gh-subscribe-rss">or subscribe <a href="http://cloud.feedly.com/#subscription/feed/{{@blog.url}}/rss/">via RSS</a> with Feedly!</span>
-            </section>
-            {{/if}}
-        </footer> --}}
     </article>
 <nav class="pagination in-post" role="navigation">
   <div class="col-lg-12">
@@ -71,10 +59,39 @@
   </div>
 </nav>
 {{#is "post"}}
-    <h4 class="comment">Commenter cet article</h4>
-    <section id="isso-thread"
-             data-title="{{title}}"
-             data-isso-id="melmelboo-{{id}}"></section>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h4 class="share-title">Vous avez aimé notre article ?</h4>
+      <p class="share-text">N'hésitez pas à le partager, c'est une jolie manière de nous soutenir !</p>
+      <div class="margin-bottom-20 col-lg-12 share-buttons">
+        <div class="fb-like" data-href="{{url absolute="true"}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <div style="display: inline-block;">
+          <div style="position: absolute; top: 9px;">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </div>
+        <div style="display: inline-block; margin-left: 74px; height: 20px;">
+          <span style="display:block;width:147px;height:26px;position:relative;padding:0;border:10px 0px;margin:0;clear:both;">
+            <a href="http://www.hellocoton.fr/vote" target="_blank" style="display:block;width:121px;height:26px;position:absolute;top:0;left:0;">
+              <img src="http://widget.hellocoton.fr/img/action-on.gif" border="0" style="background:transparent;padding:0;border:0;margin:0;float:none;" />
+            </a>
+            <a href="http://www.hellocoton.fr" target="_blank" style="display:block;width:27px;height:26px;position:absolute;top:0;left:120px;">
+              <img src="http://widget.hellocoton.fr/img/hellocoton.gif" border="0" alt="Rendez-vous sur Hellocoton !" style="background:transparent;padding:0;border:0;margin:0;float:none;" />
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="subscribe-form col-lg-5">
+    <h4>L'EMAIL QUI MET DE LA JOIE DANS VOTRE BOÎTE AUX LETTRES !</h4>
+    <img src="/images/newsletter.jpg" alt="Inscrivez vous à notre newsletter !" />
+    {{subscribe_form placeholder="EMAIL" }}
+  </div>
+  <h4 class="comment">Commenter cet article</h4>
+  <section id="isso-thread"
+           data-title="{{title}}"
+           data-isso-id="melmelboo-{{id}}"></section>
 {{/is}}
 </main>
 {{/post}}
