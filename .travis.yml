@@ -1,0 +1,11 @@
+language: python
+python:
+  - "3.4"
+# command to install dependencies
+install:
+  - pip install -r requirements.freeze.txt
+# command to run tests
+before_script:
+  - pip install flake8
+script:
+  - flake8 . --exclude=venv
