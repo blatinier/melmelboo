@@ -51,7 +51,7 @@ Website: %s
 
 @application.route("/projects", methods=['GET'])
 def projects():
-    ghost = sqlite3.connect("/var/www/melmelboo/blog/content/data/ghost.db")
+    ghost = sqlite3.connect(conf.BLOG_DB_PATH)
     ghost_cur = ghost.cursor()
     # Get projet 52 - 2015
     ghost_cur.execute("SELECT title, image FROM posts WHERE id IN "
