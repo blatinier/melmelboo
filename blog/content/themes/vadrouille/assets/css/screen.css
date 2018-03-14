@@ -450,16 +450,37 @@ input#search {
   padding-left: 35px;
   width: 50%;
 }
-
-.post-voyage-call-to-action {
-  margin-bottom: 30px;
-  margin-top: -50px;
-  width: 90%;
+.post-excerpt {
+  margin-left: -15px;
+  padding: 30px 0;
 }
 
-.post-loop-header {
-  overflow: hidden;
-  max-height: 182px;
+.post-excerpt h2 {
+  font-family: "Open Sans Condensed",sans-serif;
+}
+
+.post-excerpt a {
+  text-decoration: none;
+}
+
+.post-excerpt p {
+  color: #4A4A4A;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  font-size: 0.73em;
+  font-style: normal;
+  line-height: 1.5em;
+  margin: 15px 0 0 0;
+  min-height: 60px;
+  text-align: justify;
+  width: 95%;
+}
+.post-excerpt p.read-more:hover {
+  color: #889093;
+}
+.post-excerpt p.read-more {
+  color: black;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  text-decoration: none;
 }
 .overlay-voyage {
   position: relative;
@@ -478,7 +499,6 @@ input#search {
 .overlay-voyage > img {
   width: 100%;
 }
-
 .posts-loop {
   float: left;
 }
@@ -537,6 +557,7 @@ main {
 .post {
   position: relative;
   margin: 4rem auto;
+  padding-bottom: 4rem;
   word-wrap: break-word;
 }
 .posts-loop .post {
