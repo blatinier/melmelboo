@@ -7,7 +7,9 @@ blog/*.js
 blog/*.json
 blog/*.md
 blog/core/
-blog/node_modules/
+**/node_modules/
+blog/content/package-lock.json
+blog/content/themes/casper/
 blog/content/apps/
 blog/content/data/
 blog/content/images/

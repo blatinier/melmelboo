@@ -1,6 +1,6 @@
 import logging
-#PLATFORM_URL = 'https://www.melmelboo.fr'
-PLATFORM_URL = 'https://blog.melmelboo.fr'
+PLATFORM_URL = 'https://www.melmelboo.fr'
+BLOG_PATH = 'http://www.melmelboo.fr/blog'
 SECRET_KEY = 'test'
 
 # LOG
@@ -14,3 +14,8 @@ MAIL_SENDER_MDP = 'test'
 BLOG_DB_PATH = "/path/to/melmelboo/blog/ghost.db"
 GHOST_ID = "ghost-api-id"
 GHOST_SECRET = "ghost-api-secret"
+
+INDEX_DIR = "/var/lib/whoosh/melmelboo"
+INDEX_NAME = "melmelboo"
+
+PAGE_SIZE = 6

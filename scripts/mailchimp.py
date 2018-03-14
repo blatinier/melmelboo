@@ -14,8 +14,9 @@ def transfer(api_key, db_voyage):
 
 def get_mailchimp_mails(api_key):
     print("[1/3] Get mails from mailchimp")
-    mails = requests.get("https://us14.api.mailchimp.com/3.0/lists/3d9abf3837/members",
-                        auth=("pouet", api_key)).json()
+    mails = requests.get("https://us14.api.mailchimp.com/"
+                         "3.0/lists/3d9abf3837/members",
+                         auth=("pouet", api_key)).json()
     return set([member["email_address"] for member in mails["members"]])
 
 
@@ -31,7 +32,8 @@ def add_mails_to_mailchimp(api_key, mails):
     print("[3/3] Transfer to mailchimp")
     print("%s mails to transfer" % len(mails))
     for mail in mails:
-        r = requests.post("https://us14.api.mailchimp.com/3.0/lists/3d9abf3837/members",
+        r = requests.post("https://us14.api.mailchimp.com/"
+                          "3.0/lists/3d9abf3837/members",
                           auth=("pouet", api_key),
                           data=json.dumps({"email_address": mail,
                                            "status": "subscribed"}))
