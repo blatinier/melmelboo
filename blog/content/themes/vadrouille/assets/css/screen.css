@@ -563,6 +563,7 @@ main {
 .post {
   position: relative;
   margin: 4rem auto;
+  padding-bottom: 4rem;
   word-wrap: break-word;
 }
 .posts-loop .post {
