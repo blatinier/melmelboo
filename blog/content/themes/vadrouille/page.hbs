@@ -1,12 +1,26 @@
 {{!< default}}
-
 {{!-- This is a page template. A page outputs content just like any other post, and has all the same
     attributes by default, but you can also customise it to behave differently if you prefer. --}}
-
 {{> "navigation" }}
 
 {{!-- Everything inside the #post tags pulls data from the page --}}
 {{#post}}
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<div id="share-tooltip">
+    <p>Hey ! On a une chouette page facebook, tu viens ?</p>
+    <img id="share-gif" src="/images/cloud.gif" alt="" />
+    <div class="fb-like" data-href="https://www.facebook.com/melmelboo" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <p><a href="#nop" id="no-share-box">Non... laisse moi tranquille, va-t-en !</a></p>
+</div>
 <main class="content col-lg-8" role="main">
     <article class="{{post_class}}">
         <header class="post-header">
@@ -14,7 +28,32 @@
         </header>
         <section class="post-content">
             {{content}}
+            <p></p>
         </section>
     </article>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h4 class="share-title">Vous avez aimé notre article ?</h4>
+      <p class="share-text">N'hésitez pas à le partager, c'est une jolie manière de nous soutenir !</p>
+      <div class="margin-bottom-20 col-lg-12 share-buttons">
+        <div class="fb-like" data-href="{{url absolute="true"}}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <div style="display: inline-block;">
+          <div style="position: absolute; top: 9px;">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </div>
+        <div style="display: inline-block; margin-left: 74px; height: 20px;">
+          <span style="display:block;width:147px;height:26px;position:relative;padding:0;border:10px 0px;margin:0;clear:both;">
+            <a href="http://www.hellocoton.fr/vote" target="_blank" style="display:block;width:121px;height:26px;position:absolute;top:0;left:0;">
+              <img src="http://widget.hellocoton.fr/img/action-on.gif" border="0" style="background:transparent;padding:0;border:0;margin:0;float:none;" />
+            </a>
+            <a href="http://www.hellocoton.fr" target="_blank" style="display:block;width:27px;height:26px;position:absolute;top:0;left:120px;">
+              <img src="http://widget.hellocoton.fr/img/hellocoton.gif" border="0" alt="Rendez-vous sur Hellocoton !" style="background:transparent;padding:0;border:0;margin:0;float:none;" />
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 {{/post}}
