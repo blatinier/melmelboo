@@ -164,7 +164,6 @@ hr {
   font-size: 1em;
 }
 article.post {
-  margin-top: 165px;
   margin-bottom: 0;
   width: 100%;
 }
@@ -522,6 +521,9 @@ header h1.post-title, header h2.post-title {
   font-size: 1.42em;
   font-weight: 100;
   letter-spacing: -0.6px;
+  line-height: 65px;
+  padding-left: 90px;
+  min-height: 75px;
   text-transform: uppercase;
   width: 95%;
 }
@@ -557,7 +559,6 @@ main {
 .post {
   position: relative;
   margin: 4rem auto;
-  padding-bottom: 4rem;
   word-wrap: break-word;
 }
 .posts-loop .post {
@@ -566,7 +567,6 @@ main {
 }
 body .post-title {
   font-size: 1.8rem;
-  font-weight: bold;
 }
 .post-title a {
   text-decoration: none;
@@ -626,6 +626,10 @@ body .post-title {
   width: 95%;
   z-index:1;
 }
+.post-loop-header {
+  overflow: hidden;
+  max-height: 190px;
+}
 .post-loop .pagination {
   margin: 5rem auto;
   height: 0;
@@ -676,11 +680,6 @@ body .post-title {
 .newer-posts:hover {
   color: #889093;
   border-color: #98a0a4;
-}
-#globe {
-  float:right;
-  height:168px;
-  margin-top:-170px;
 }
 #menu-drop {
   display: none;

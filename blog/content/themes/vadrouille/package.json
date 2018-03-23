@@ -1,4 +1,6 @@
 {
-  "name": "Vadrouille",
-  "version": "1.0.0"
+  "name": "vadrouille",
+  "version": "1.0.0",
+  "author": {"email": "camille.demoment@gmail.com"},
+  "config": {"posts_per_page": 6}
 }
