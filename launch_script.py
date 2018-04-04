@@ -9,8 +9,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.script == "index_blog":
         from scripts.indexer import BlogIndexer
-        bi = BlogIndexer(conf.BLOG_DB_PATH, conf.INDEX_NAME,
-                         conf.INDEX_DIR)
+        bi = BlogIndexer(conf.INDEX_NAME, conf.INDEX_DIR)
         bi.init_index()
         bi.index_blog()
     elif args.script == "mails_to_mailchimp":

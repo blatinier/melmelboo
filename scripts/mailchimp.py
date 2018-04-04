@@ -4,10 +4,12 @@ import json
 import requests
 import sqlite3
 
+from databases import get_voyage_connection
 
-def transfer(api_key, db_voyage):
+
+def transfer(api_key):
     transfered_mails = get_mailchimp_mails(api_key)
-    ghost_mails = get_ghost_mails(db_voyage)
+    ghost_mails = get_ghost_mails()
     mails_to_tranfer = ghost_mails - transfered_mails
     add_mails_to_mailchimp(api_key, mails_to_tranfer)
 
@@ -20,12 +22,12 @@ def get_mailchimp_mails(api_key):
     return set([member["email_address"] for member in mails["members"]])
 
 
-def get_ghost_mails(db_voyage):
+def get_ghost_mails():
     print("[2/3] Get mails from blog subscribers")
-    ghost = sqlite3.connect(db_voyage)
-    ghost_cur = ghost.cursor()
-    ghost_cur.execute("SELECT email FROM subscribers")
-    return set([str(mail[0]) for mail in ghost_cur.fetchall()])
+    ghost = get_voyage_connection()
+    with ghost.cursor() as ghost_cur:
+        ghost_cur.execute("SELECT email FROM subscribers")
+        return set([str(mail[0]) for mail in ghost_cur.fetchall()])
 
 
 def add_mails_to_mailchimp(api_key, mails):

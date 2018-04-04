@@ -8,6 +8,7 @@ from whoosh.qparser import MultifieldParser
 
 import conf
 from bootstrap import application, mail
+from databases import get_melmelboo_connection
 from forms import ContactForm
 from utils.cleaner import clean_string
 
@@ -51,20 +52,20 @@ Website: %s
 
 @application.route("/projects", methods=['GET'])
 def projects():
-    ghost = sqlite3.connect(conf.BLOG_DB_PATH)
-    ghost_cur = ghost.cursor()
-    # Get projet 52 - 2015
-    ghost_cur.execute("SELECT title, image FROM posts WHERE id IN "
-                      "(SELECT post_id FROM posts_tags WHERE tag_id=36) "
-                      "AND strftime('%Y', published_at)='2015'"
-                      "ORDER BY published_at DESC")
-    p52_2015 = list(ghost_cur.fetchall())
-    # Get projet 52 - 2016
-    ghost_cur.execute("SELECT title, image FROM posts WHERE id IN "
-                      "(SELECT post_id FROM posts_tags WHERE tag_id=36) "
-                      "AND strftime('%Y', published_at)='2016'"
-                      "ORDER BY published_at DESC")
-    p52_2016 = list(ghost_cur.fetchall())
+    ghost = get_melmelboo_connection()
+    with ghost.cursor() as ghost_cur:
+        # Get projet 52 - 2015
+        ghost_cur.execute("SELECT title, feature_image FROM posts WHERE id IN "
+                          "(SELECT post_id FROM posts_tags WHERE tag_id='5ac410167526de286e2664a7') "
+                          "AND YEAR(published_at)='2015'"
+                          "ORDER BY published_at DESC")
+        p52_2015 = list(ghost_cur.fetchall())
+        # Get projet 52 - 2016
+        ghost_cur.execute("SELECT title, feature_image FROM posts WHERE id IN "
+                          "(SELECT post_id FROM posts_tags WHERE tag_id='5ac410167526de286e2664a7') "
+                          "AND YEAR(published_at)='2016'"
+                          "ORDER BY published_at DESC")
+        p52_2016 = list(ghost_cur.fetchall())
     ghost.close()
     return render_template('projects.html',
                            p52_2015=p52_2015, p52_2016=p52_2016)
@@ -82,15 +83,18 @@ def search(page):
     with index.searcher() as searcher:
         results = searcher.search_page(q, page, pagelen=conf.PAGE_SIZE)
         # Get real posts
-        post_ids = ",".join([p['post_id'] for p in results])
-        ghost = sqlite3.connect(conf.BLOG_DB_PATH)
-        ghost_cur = ghost.cursor()
-        ghost_cur.execute("SELECT title, image, html, slug "
-                          "FROM posts WHERE id IN (%s)" % post_ids)
-        posts = [{'type': "post",
-                  'title': i[0],
-                  'image': i[1],
-                  'excerpt': excerpt(i[2]),
-                  'url': "/blog/" + i[3]} for i in ghost_cur.fetchall()]
-        ghost.close()
+        post_ids = ",".join(["'%s'" % p['post_id'] for p in results])
+        if post_ids:
+            ghost = get_melmelboo_connection()
+            with ghost.cursor() as ghost_cur:
+                ghost_cur.execute("SELECT title, feature_image, html, slug "
+                                  "FROM posts WHERE id IN (%s)" % post_ids)
+                posts = [{'type': "post",
+                          'title': i[0],
+                          'image': i[1],
+                          'excerpt': excerpt(i[2]),
+                          'url': "/blog/" + i[3]} for i in ghost_cur.fetchall()]
+            ghost.close()
+        else:
+            posts = []
     return render_template("search.html", posts=posts, search=search)
